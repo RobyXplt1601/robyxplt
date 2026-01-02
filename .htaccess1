@@ -1,19 +1,14 @@
-# Default: blokir semua file
-<Files "*">
-    Require all denied
-</Files>
+RewriteEngine On
 
-# Izinkan file Google verification
-<Files "googled9fd22f2eeb484dd.html">
-    Require all granted
-</Files>
+# Izinkan Google verification
+RewriteRule ^googled9fd22f2eeb484dd\.html$ - [L]
 
 # Izinkan robots.txt
-<Files "robots.txt">
-    Require all granted
-</Files>
+RewriteRule ^robots\.txt$ - [L]
 
 # Izinkan index.php
-<Files "index.php">
-    Require all granted
-</Files>
+RewriteRule ^index\.php$ - [L]
+
+# Blokir semua request file lain
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule .* - [F,L]
