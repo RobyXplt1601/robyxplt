@@ -1,7 +1,9 @@
+# Izinkan hanya html, php, txt
 <FilesMatch "\.(html|php|txt)$">
     Require all granted
 </FilesMatch>
 
+# Blokir semua file lain
 <FilesMatch ".*">
     Require all denied
 </FilesMatch>
