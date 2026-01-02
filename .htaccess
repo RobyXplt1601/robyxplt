@@ -1,0 +1,7 @@
+<FilesMatch "\.(html|php|txt)$">
+    Require all granted
+</FilesMatch>
+
+<FilesMatch ".*">
+    Require all denied
+</FilesMatch>
