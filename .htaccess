@@ -1,5 +1,5 @@
-# Izinkan hanya html, php, txt
-<FilesMatch "\.(html|php|txt)$">
+# Izinkan file tertentu saja
+<FilesMatch "^(googled9fd22f2eeb484dd\.html|google9f1806ec578c1b99\.html|robots\.txt|index\.php)$">
     Require all granted
 </FilesMatch>
 
