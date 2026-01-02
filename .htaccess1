@@ -1,0 +1,19 @@
+# Default: blokir semua file
+<Files "*">
+    Require all denied
+</Files>
+
+# Izinkan file Google verification
+<Files "googled9fd22f2eeb484dd.html">
+    Require all granted
+</Files>
+
+# Izinkan robots.txt
+<Files "robots.txt">
+    Require all granted
+</Files>
+
+# Izinkan index.php
+<Files "index.php">
+    Require all granted
+</Files>
