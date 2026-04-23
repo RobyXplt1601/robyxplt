@@ -3,29 +3,40 @@ $base = getenv('HOME') ?: dirname($_SERVER['DOCUMENT_ROOT']);
 $path = isset($_GET['path']) ? realpath($base.'/'.ltrim($_GET['path'],'/')) : $base;
 if($path===false || strpos($path,$base)!==0) $path=$base;
 
-/* upload + mkdir */
+/* POST ACTIONS */
 if($_SERVER['REQUEST_METHOD']==='POST'){
+
+    /* upload file */
     if(isset($_FILES['upload']) && $_FILES['upload']['name']){
         move_uploaded_file($_FILES['upload']['tmp_name'],$path.'/'.basename($_FILES['upload']['name']));
     }
 
+    /* create folder */
     if(isset($_POST['mkdir']) && $_POST['mkdir']){
         @mkdir($path.'/'.basename($_POST['mkdir']));
     }
 
-    /* save file */
+    /* create file */
+    if(isset($_POST['newfile']) && $_POST['newfile']){
+        $new = $path.'/'.basename($_POST['newfile']);
+        if(!file_exists($new)){
+            file_put_contents($new,'');
+        }
+    }
+
+    /* save edit file */
     if(isset($_POST['savefile']) && isset($_POST['filename'])){
         file_put_contents($path.'/'.basename($_POST['filename']), $_POST['content']);
     }
 }
 
-/* delete */
+/* delete file */
 if(isset($_GET['delete'])){
     $f = $path.'/'.basename($_GET['delete']);
     if(is_file($f)) @unlink($f);
 }
 
-/* edit */
+/* edit file */
 $editFile = '';
 if(isset($_GET['edit'])){
     $tmp = $path.'/'.basename($_GET['edit']);
@@ -72,6 +83,7 @@ textarea{height:420px;font-family:monospace}
 <a href="?path=<?php echo urlencode(rel($base,$base)); ?>">Home</a>
 <a href="#upload">Upload</a>
 <a href="#mkdir">Create Folder</a>
+<a href="#mkfile">Create File</a>
 
 <hr>
 
@@ -153,7 +165,15 @@ echo '</td></tr>';
 <h3>Create Folder</h3>
 <form method="post">
 <input name="mkdir" placeholder="Folder name">
-<button>Create</button>
+<button>Create Folder</button>
+</form>
+</div>
+
+<div class="card" id="mkfile">
+<h3>Create File</h3>
+<form method="post">
+<input name="newfile" placeholder="example.php / note.txt">
+<button>Create File</button>
 </form>
 </div>
 
